@@ -1,6 +1,7 @@
 
 import React from 'react';
-import { Leaf, Info, Sun } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Leaf, Info, Sun, Home } from 'lucide-react';
 
 const Header: React.FC = () => {
   return (
@@ -16,6 +17,9 @@ const Header: React.FC = () => {
       </div>
       
       <div className="flex items-center space-x-2">
+        <Link to="/" className="rounded-full w-8 h-8 flex items-center justify-center text-muted-foreground hover:bg-muted transition-colors" aria-label="Home">
+          <Home className="h-5 w-5" />
+        </Link>
         <button 
           className="rounded-full w-8 h-8 flex items-center justify-center text-muted-foreground hover:bg-muted transition-colors"
           aria-label="Information"

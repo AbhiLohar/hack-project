@@ -59,12 +59,12 @@ const Index = () => {
   }, [state.autoAdjust]);
   
   return (
-    <div className="min-h-screen bg-background">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+    <div className="min-h-screen bg-background overflow-x-hidden">
+      <div className="main-container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
         <Header />
         
-        <main className="pb-12">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <main className="pb-12 mt-4">
+          <div className="controls-container grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <EnvironmentControls 
               state={state} 
               onParameterChange={handleParameterChange}

@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Thermometer, Droplet, Cloud, Sun, Power } from 'lucide-react';
+import { Thermometer, Droplet, Cloud, Sun } from 'lucide-react';
 import { EnvironmentState } from '../utils/simulationLogic';
 import { crops } from '../utils/cropData';
 
@@ -123,39 +123,48 @@ const EnvironmentControls: React.FC<EnvironmentControlsProps> = ({
           </div>
         </div>
       
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {controlItems.map((item) => (
             <div 
               key={item.key} 
-              className="border rounded-lg p-3 transition-all hover:shadow-sm"
+              className="border rounded-lg p-4 transition-all hover:shadow-sm bg-white"
             >
-              <div className="flex items-center mb-1 justify-between">
+              <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center space-x-2">
                   <div className={getStatusColor(item.status)}>
                     {item.icon}
                   </div>
-                  <span className="font-medium text-sm">{item.name}</span>
+                  <span className="font-medium">{item.name}</span>
                 </div>
-                <div className="text-base font-medium">
+                <div className="text-lg font-medium">
                   {state[item.key].toFixed(item.key === 'temperature' ? 1 : 0)}{item.unit}
                 </div>
               </div>
               
-              <div className="flex items-center space-x-2 mb-1">
+              <div className="flex items-center mb-2">
                 <span className="text-xs text-muted-foreground w-8">{item.min}{item.unit}</span>
-                <input
-                  type="range"
-                  min={item.min}
-                  max={item.max}
-                  step={item.step}
-                  value={state[item.key]}
-                  onChange={(e) => onParameterChange(item.key, parseFloat(e.target.value))}
-                  className="flex-grow"
-                />
+                <div className="relative flex-grow mx-2">
+                  <input
+                    type="range"
+                    min={item.min}
+                    max={item.max}
+                    step={item.step}
+                    value={state[item.key]}
+                    onChange={(e) => onParameterChange(item.key, parseFloat(e.target.value))}
+                    className="w-full"
+                  />
+                  <div 
+                    className="absolute top-1/2 transform -translate-y-1/2 w-4 h-4 bg-primary rounded-full border-2 border-white shadow"
+                    style={{ 
+                      left: `${((state[item.key] - item.min) / (item.max - item.min)) * 100}%`,
+                      marginLeft: "-8px" // Center the thumb
+                    }}
+                  />
+                </div>
                 <span className="text-xs text-muted-foreground w-8 text-right">{item.max}{item.unit}</span>
               </div>
               
-              <div className={`text-xs ${getStatusColor(item.status)} mt-1`}>
+              <div className={`text-sm ${getStatusColor(item.status)} mt-2 truncate`}>
                 {item.message}
               </div>
             </div>

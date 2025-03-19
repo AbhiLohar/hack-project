@@ -57,7 +57,7 @@ const Index = () => {
   
   return (
     <div className="min-h-screen bg-background">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
         <Header />
         
         <main className="pb-12">
@@ -83,7 +83,7 @@ const Index = () => {
             <div>
               <RecommendationPanel 
                 recommendations={recommendations} 
-                healthScore={state.healthScore}
+                healthScore={state.healthScore || 0}
               />
             </div>
           </div>

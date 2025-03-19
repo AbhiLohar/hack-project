@@ -21,7 +21,10 @@ const Index = () => {
   const [selectedCropData, setSelectedCropData] = useState(simulation.getSelectedCrop());
   
   // Update UI when parameters change
-  const handleParameterChange = (key: keyof EnvironmentState, value: number | string | boolean) => {
+  const handleParameterChange = (
+    key: 'temperature' | 'humidity' | 'soilMoisture' | 'lightIntensity' | 'selectedCrop' | 'autoAdjust', 
+    value: number | string | boolean
+  ) => {
     simulation.setParameter(key, value);
     
     // Update all the UI state
